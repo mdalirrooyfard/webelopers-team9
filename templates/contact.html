@@ -2,7 +2,18 @@
 {% block content %}
     <form id = "contact_us_form" action= "{% url "contact"%}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+        title
+        <input name="title" required="required">
+        <br>
+        <br>
+        email
+        <input name="email" required="required">
+        <br>
+        <br>
+        text
+        <textarea name="text" minlength="10" maxlength="250" required="required"></textarea>
+        <br>
+        <br>
     <button name="submit" type="submit">submit</button>
 </form>
 

@@ -33,10 +33,16 @@ def signup(request):
 
 
 def contact(request):
+    title = ""
+    email = ""
+    text = ""
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            title = form.cleaned_data.get('title')
+            email = form.cleaned_data.get('email')
+            text = form.cleaned_data.get('text')
             return redirect('done')
     else:
         form = ContactForm()
-    return render(request,"contact.html",{'form':form})
+    return render(request,"contact.html",{'title':title,'email':email,'text':text})
