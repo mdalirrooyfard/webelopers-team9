@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <form id = "contact_form" action= "{% url "contact"%}" method="POST">
+    <form id = "contact_us_form" action= "{% url "contact"%}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit" type="submit">submit</button>
