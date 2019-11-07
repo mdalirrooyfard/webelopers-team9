@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>base</title>
 </head>
 <body>
-
+    <div id = "navbar">
+        <a id="login">Login</a>
+        <a id="register">Register</a>
+        <a id="homepage" href = "/">Homepage</a>
+    </div>
+     <div id="content">
+         {% block content %}
+         {% endblock %}
+     </div>
 </body>
 </html>
