@@ -20,8 +20,11 @@ def signup(request):
     # password2
     if request.method == 'POST':
         form = SignupForm(request.POST)
+        #print(request)
         if form.is_valid():
+            #print('valid')
             user = form.save()
+            user.refresh_from_db()
             user.save()
             #return redirect('home')
     else:
