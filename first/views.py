@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, render_to_response
 
 # Create your views here.
 from contest import settings
 from first.forms import SignupForm
+
 
 def homepage(request):
     return render(request, 'Homepage.html')
@@ -78,3 +80,21 @@ def Logout(request):
 def profile(request):
     user = request.user
     return render(request, 'profile.html', {'first_name':user.first_name, 'last_name':user.last_name, 'username':user.username})
+
+
+def setting(request):
+    if request.method == "POST":
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        if len(first_name) > 0 or len(last_name) > 0:
+            user = request.user
+            print(user.first_name)
+            if len(first_name) > 0:
+                user.first_name = first_name
+            if len(last_name):
+                user.last_name = last_name
+            user.save()
+        return redirect('profile')
+
+    else:
+        return render(request,'settings.html')
