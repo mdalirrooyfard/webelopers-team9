@@ -12,5 +12,6 @@ urlpatterns = [
     path('login/',Login,name='login'),
     path('logout/',Logout, name='logout'),
     path('profile/',profile,name='profile'),
-    path('settings/', setting,name='settings')
+    path('settings/', setting,name='settings'),
+    path('panel/', TemplateView.as_view(template_name="panel.html"), name = 'panel')
 ]
