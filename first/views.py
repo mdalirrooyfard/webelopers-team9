@@ -17,15 +17,12 @@ def homepage(request):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        print("here1")
         error1 = False
         error2 = False
         if form.is_valid():
             if form.cleaned_data['password1'] != form.cleaned_data['password2']:
-                print("pas")
                 error1 = True
             if len (User.objects.filter(username=form.cleaned_data['username'])) > 0:
-                print("username")
                 error2 = True
             if error1 or error2:
                 return render(request,'signup.html',{'form':form, 'error1':error1, 'error2':error2})
@@ -109,7 +106,6 @@ def new_course(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             course = form.save()
-            #course.user = request.user
             course.save()
             return redirect('panel')
         return redirect('new_course')
