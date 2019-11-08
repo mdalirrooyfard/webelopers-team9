@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect, render_to_response
 
 # Create your views here.
 from contest import settings
-from first.forms import SignupForm
+from first.forms import SignupForm, CourseForm
+from first.models import Course
 
 
 def homepage(request):
@@ -98,3 +99,21 @@ def setting(request):
 
     else:
         return render(request,'settings.html')
+
+
+def new_course(request):
+    if request.method == "POST":
+        form = CourseForm(request.POST)
+        course = form.save()
+        course.user = request.user
+        course.save()
+        return redirect('panel')
+    else:
+        form = CourseForm()
+        return render(request,"new_course.html", {"form":form})
+
+
+def Courses(request):
+    courses = Course.objects.all()
+    return render(request,"cources.html",{"courses":courses})
+

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 from django.views.generic import TemplateView
 
-from first.views import homepage, signup, contact, Login, Logout, profile, setting
+from first.views import homepage, signup, contact, Login, Logout, profile, setting, new_course, Courses
 
 urlpatterns = [
     path('', homepage,name='home'),
@@ -13,5 +13,7 @@ urlpatterns = [
     path('logout/',Logout, name='logout'),
     path('profile/',profile,name='profile'),
     path('settings/', setting,name='settings'),
-    path('panel/', TemplateView.as_view(template_name="panel.html"), name = 'panel')
+    path('panel/', TemplateView.as_view(template_name="panel.html"), name = 'panel'),
+    path('new_course/',new_course, name="new_course"),
+    path('courses/',Courses,name="courses"),
 ]
