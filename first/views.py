@@ -107,10 +107,12 @@ def setting(request):
 def new_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
-        course = form.save()
-        course.user = request.user
-        course.save()
-        return redirect('panel')
+        if form.is_valid():
+            course = form.save()
+            #course.user = request.user
+            course.save()
+            return redirect('panel')
+        return redirect('new_course')
     else:
         form = CourseForm()
         return render(request,"new_course.html", {"form":form})

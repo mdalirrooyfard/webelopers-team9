@@ -6,7 +6,7 @@
         <h4>{{ course.name }}</h4>
         <div>{{ course.department }}</div>
         <div>{{ course.first_day }} {{ course.second_day }}</div>
-        <div>{{ course.start_time }} {{ course.end_time }}</div>
+        <div>{{ course.start_time|date:'H:i' }} {{ course.end_time|date:'H:i' }}</div>
         <div>{{ course.teacher }}</div>
         </div>
     {% endfor %}
