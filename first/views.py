@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect, render_to_response
 from contest import settings
 from first.forms import SignupForm
 
-
 def homepage(request):
     return render(request, 'Homepage.html')
 
@@ -15,17 +14,18 @@ def homepage(request):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        error1 = False
-        error2 = False
-        if form.cleaned_data.get('password1') != form.cleaned_data.get('password2'):
-            error1 = True
-        if authenticate(username=form.cleaned_data.get('username')) is not None:
-            error2 = True
-        if error1 or error2:
-            return render(request,'signup.html',{'form':form, 'error1':error1, 'error2':error2})
-        user = form.save()
-        user.refresh_from_db()
-        user.save()
+        # error1 = False
+        # error2 = False
+        # if form.cleaned_data.get('password1') != form.cleaned_data.get('password2'):
+        #     error1 = True
+        # if authenticate(username=form.cleaned_data.get('username')) is not None:
+        #     error2 = True
+        # if error1 or error2:
+        #     return render(request,'signup.html',{'form':form, 'error1':error1, 'error2':error2})
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.save()
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
@@ -73,3 +73,8 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect('home')
+
+
+def profile(request):
+    user = request.user
+    return render(request, 'profile.html', {'first_name':user.first_name, 'last_name':user.last_name, 'username':user.username})
