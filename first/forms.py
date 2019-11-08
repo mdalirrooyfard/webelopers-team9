@@ -6,13 +6,17 @@ from django.forms import ModelForm
 from first.models import Course
 
 
-class SignupForm(forms.Form):
+class SignupForm(UserCreationForm):
     first_name = forms.CharField(max_length=50,required=True)
     last_name = forms.CharField(max_length=50,required=True)
-    username = forms.CharField(max_length=50,required=True)
+    # username = forms.CharField(max_length=50,required=True)
     email = forms.EmailField(max_length=300,required=True)
-    password1 = forms.CharField(max_length=50,required=True)
-    password2 = forms.CharField(max_length=50,required=True)
+    # password1 = forms.CharField(max_length=50,required=True)
+    # password2 = forms.CharField(max_length=50,required=True)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
 
 
 class CourseForm(ModelForm):
