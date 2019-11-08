@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <form name = "form" action = "{% url "login" %}"
-         method = "POST" >{% csrf_token %}
+         method = "POST" id="login_form" >{% csrf_token %}
 
          <div style = "max-width:470px;">
             <center>
