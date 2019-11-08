@@ -4,5 +4,15 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit" type="submit">submit</button>
+    {% if error1 or error2 %}
+        <div id="errors">
+            {% if error1 %}
+                گذرواژه و تکرار گذرواژه یکسان نیستند
+                {% endif %}
+            {% if error2 %}
+                نام کاربری شما در سیستم موجود است
+                {% endif %}
+        </div>
+    {% endif %}
 </form>
 {% endblock %}
