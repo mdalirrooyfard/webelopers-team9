@@ -34,6 +34,10 @@
          </div>
 
       </form>
-
+    {% if error %}
+        <div id="error">
+        نام و رمز خود را درست وارد کنید.
+        </div>
+    {% endif %}
 
 {% endblock %}

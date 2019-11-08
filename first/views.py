@@ -1,7 +1,6 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect, render_to_response
 
 # Create your views here.
 from first.forms import SignupForm, ContactForm
@@ -53,7 +52,11 @@ def Login(request):
             login(request,user)
             return redirect('home')
         else:
-            pass
-            return redirect('login')
+            return render(request,'login.html',{"error":True})
     else:
-        return render(request,"login.html")
+        return render(request,"login.html",{"error":False})
+
+
+def Logout(request):
+    logout(request)
+    return redirect('home')
