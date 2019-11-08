@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 
 # Create your views here.
-from first.forms import SignupForm, ContactForm
+from first.forms import SignupForm
 
 
 def homepage(request):
@@ -27,17 +27,14 @@ def contact(request):
     email = ""
     text = ""
     if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data.get('title')
-            email = form.cleaned_data.get('email')
-            text = form.cleaned_data.get('text')
+        title = request.POST['title']
+        email = request.POST['email']
+        text = request.POST['text']
+        if 10 <=len(text)<=250:
             return redirect('done')
         else:
-            form.full_clean()
             return redirect('contact')
     else:
-        form = ContactForm()
         return render(request,'contact.html')
 
 

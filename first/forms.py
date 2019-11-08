@@ -13,9 +13,5 @@ class SignupForm(UserCreationForm):
         fields = ('first_name','last_name','username','email','password1','password2',)
 
 
-class ContactForm(forms.Form):
-    title = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    text = forms.Textarea()
 
 
